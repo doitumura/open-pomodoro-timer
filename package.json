@@ -1,0 +1,19 @@
+{
+  "name": "pomodoro-timer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doitumura/pomodoro-timer.git"
+  },
+  "author": "doitumura",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/doitumura/pomodoro-timer/issues"
+  },
+  "homepage": "https://github.com/doitumura/pomodoro-timer#readme"
+}
