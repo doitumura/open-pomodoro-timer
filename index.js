@@ -19,14 +19,14 @@ const countTimer = (targetMinutes) => {
 }
 
 const startFocusTimer = async (settingsJson) => {
-  process.stdout.write("\rfocus");
+  process.stdout.write("\r\x1b[31mfocus");
   await sleep(1000);
   await countTimer(settingsJson["focus"]);
   startBreakTimer(settingsJson);
 }
 
 const startBreakTimer = async (settingsJson) => {
-  process.stdout.write("\rbreak");
+  process.stdout.write("\r\x1b[32mbreak");
   await sleep(1000);
   await countTimer(settingsJson["break"]);
   startFocusTimer(settingsJson);
