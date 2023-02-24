@@ -2,11 +2,11 @@ const sleep = (ms) => {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
-const countTimer = (targetMinutes) => {
+const printRemainingTime = (targetMinutes) => {
   return new Promise(async (resolve) => {
     const targetSeconds = targetMinutes * 60;
     let elapsedSeconds = 0;
-    while(elapsedSeconds <= targetSeconds) {
+    while(elapsedSeconds < targetSeconds) {
       const remainingMinutes = String(Math.floor((targetSeconds - elapsedSeconds) / 60)).padStart(2, '0');
       const remainingSeconds = String((targetSeconds - elapsedSeconds) % 60).padStart(2, '0');
       process.stdout.write(`\r${remainingMinutes}:${remainingSeconds}`);
@@ -21,14 +21,14 @@ const countTimer = (targetMinutes) => {
 const startFocusTimer = async (settingsJson) => {
   process.stdout.write("\r\x1b[31mfocus");
   await sleep(1000);
-  await countTimer(settingsJson["focus"]);
+  await printRemainingTime(settingsJson["focus"]);
   startBreakTimer(settingsJson);
 }
 
 const startBreakTimer = async (settingsJson) => {
   process.stdout.write("\r\x1b[32mbreak");
   await sleep(1000);
-  await countTimer(settingsJson["break"]);
+  await printRemainingTime(settingsJson["break"]);
   startFocusTimer(settingsJson);
 }
 
