@@ -24,7 +24,7 @@ const openAppAndWebpage = async (timerType) => {
   if (timerType == "focus") process.stdout.write("\r\x1b[31mfocus");
   if (timerType == "break") process.stdout.write("\r\x1b[32mbreak");
 
-  open(`${timerType}.html`);
+  open(`page/html/${timerType}.html`);
   await sleep(3000);
 
   if(settingsJson[`${timerType}App`]) await open.openApp(settingsJson[`${timerType}App`]);
