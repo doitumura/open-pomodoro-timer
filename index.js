@@ -18,16 +18,28 @@ const printRemainingTime = (targetMinutes) => {
   })
 }
 
-const startFocusTimer = async (settingsJson) => {
-  process.stdout.write("\r\x1b[31mfocus");
+const open = require("open");
+
+const openAppAndWebpage = async (timerType) => {
+  if (timerType == "focus") process.stdout.write("\r\x1b[31mfocus");
+  if (timerType == "break") process.stdout.write("\r\x1b[32mbreak");
+
+  open(`${timerType}.html`);
+  await sleep(3000);
+
+  if(settingsJson[`${timerType}App`]) await open.openApp(settingsJson[`${timerType}App`]);
+  if(settingsJson[`${timerType}Url`]) await open(settingsJson[`${timerType}Url`]);
   await sleep(1000);
+}
+
+const startFocusTimer = async (settingsJson) => {
+  await openAppAndWebpage("focus");
   await printRemainingTime(settingsJson["focus"]);
   startBreakTimer(settingsJson);
 }
 
 const startBreakTimer = async (settingsJson) => {
-  process.stdout.write("\r\x1b[32mbreak");
-  await sleep(1000);
+  await openAppAndWebpage("break");
   await printRemainingTime(settingsJson["break"]);
   startFocusTimer(settingsJson);
 }

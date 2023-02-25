@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/doitumura/pomodoro-timer/issues"
   },
-  "homepage": "https://github.com/doitumura/pomodoro-timer#readme"
+  "homepage": "https://github.com/doitumura/pomodoro-timer#readme",
+  "dependencies": {
+    "open": "^8.4.2"
+  }
 }
