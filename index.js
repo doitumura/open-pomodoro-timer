@@ -30,6 +30,7 @@ const openAppAndWebpage = async (timerType) => {
   if(settingsJson[`${timerType}App`]) await open.openApp(settingsJson[`${timerType}App`]);
   if(settingsJson[`${timerType}Url`]) await open(settingsJson[`${timerType}Url`]);
   await sleep(1000);
+  open.openApp("Terminal");
 }
 
 const startFocusTimer = async (settingsJson) => {
