@@ -2,11 +2,13 @@ const sleep = (ms) => {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
+const readline = require("readline");
 const printRemainingTime = (targetMinutes) => {
   return new Promise(async (resolve) => {
     const targetSeconds = targetMinutes * 60;
     let elapsedSeconds = 0;
     while(elapsedSeconds < targetSeconds) {
+      readline.clearLine(process.stdout);
       const remainingMinutes = String(Math.floor((targetSeconds - elapsedSeconds) / 60)).padStart(2, '0');
       const remainingSeconds = String((targetSeconds - elapsedSeconds) % 60).padStart(2, '0');
       process.stdout.write(`\r${remainingMinutes}:${remainingSeconds}`);
@@ -19,10 +21,10 @@ const printRemainingTime = (targetMinutes) => {
 }
 
 const open = require("open");
-
 const openAppAndWebpage = async (timerType) => {
   if (timerType == "focus") process.stdout.write("\r\x1b[31mfocus");
   if (timerType == "break") process.stdout.write("\r\x1b[32mbreak");
+  if (timerType == "longbreak") process.stdout.write("\r\x1b[32mlongbreak");
 
   open(`page/html/${timerType}.html`);
   await sleep(3000);
@@ -33,19 +35,31 @@ const openAppAndWebpage = async (timerType) => {
   open.openApp("Terminal");
 }
 
-const startFocusTimer = async (settingsJson) => {
+const startFocusTimer = async (settingsJson, cycle) => {
   await openAppAndWebpage("focus");
   await printRemainingTime(settingsJson["focus"]);
-  startBreakTimer(settingsJson);
+
+  cycle++
+  if(settingsJson["cycle"] == 0 || cycle != settingsJson["cycle"]) {
+    startBreakTimer(settingsJson, cycle);
+  } else {
+    startLongbreakTimer(settingsJson);
+  }
 }
 
-const startBreakTimer = async (settingsJson) => {
+const startBreakTimer = async (settingsJson, cycle) => {
   await openAppAndWebpage("break");
   await printRemainingTime(settingsJson["break"]);
-  startFocusTimer(settingsJson);
+  startFocusTimer(settingsJson, cycle);
+}
+
+const startLongbreakTimer = async (settingsJson) => {
+  await openAppAndWebpage("longbreak");
+  await printRemainingTime(settingsJson["longbreak"]);
+  startFocusTimer(settingsJson, 0);
 }
 
 const fs = require("fs");
 const settingsJson = JSON.parse(fs.readFileSync("settings.json", "utf8"));
 
-startFocusTimer(settingsJson);
+startFocusTimer(settingsJson, 0);

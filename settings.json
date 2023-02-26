@@ -6,5 +6,7 @@
   "focusApp":"",
   "focusUrl":"",
   "breakApp":"",
-  "breakUrl":""
+  "breakUrl":"",
+  "longbreakApp":"",
+  "longbreakUrl":""
 }
