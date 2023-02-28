@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/doitumura/pomodoro-timer#readme",
   "dependencies": {
+    "minimist": "^1.2.8",
     "open": "^8.4.2"
   }
 }
