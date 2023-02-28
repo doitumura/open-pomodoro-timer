@@ -20,8 +20,8 @@ const ALL_OPTIONS = [
 ];
 
 class Setting {
-  constructor(argv) {
-    this.argv = argv;
+  constructor(option) {
+    this.option = option;
 
     if(fs.existsSync(SETTINGS_SAVE_PATH)) {
       this.settingsJson = JSON.parse(fs.readFileSync(SETTINGS_SAVE_PATH, "utf8"));
@@ -31,52 +31,51 @@ class Setting {
   }
 
   setOptionValue = () => {
-    let argv = this.argv;
-    if(!Object.keys(argv).length) {
+    if(!Object.keys(this.option).length) {
       console.log("enter option");
     }
-    if(argv["focus"] || argv["f"]) {
+    if(this.option["focus"] || this.option["f"]) {
       this.#overwriteValue("focus", "f");
     }
-    if(argv["break"] || argv["b"]) {
+    if(this.option["break"] || this.option["b"]) {
       this.#overwriteValue("break", "b");
     }
-    if(argv["longbreak"] || argv["lb"]) {
+    if(this.option["longbreak"] || this.option["lb"]) {
       this.#overwriteValue("longbreak", "lb");
     }
-    if(argv["cycle"] || argv["c"]) {
+    if(this.option["cycle"] || this.option["c"]) {
       this.#overwriteValue("cycle", "c");
     }
-    if(argv["focusApp"] || argv["fa"]) {
+    if(this.option["focusApp"] || this.option["fa"]) {
       this.#overwriteValue("focusApp", "fa");
     }
-    if(argv["focusUrl"] || argv["fu"]) {
+    if(this.option["focusUrl"] || this.option["fu"]) {
       this.#overwriteValue("focusUrl", "fu");
     }
-    if(argv["breakApp"] || argv["ba"]) {
+    if(this.option["breakApp"] || this.option["ba"]) {
       this.#overwriteValue("breakApp", "ba");
     }
-    if(argv["breakUrl"] || argv["bu"]) {
+    if(this.option["breakUrl"] || this.option["bu"]) {
       this.#overwriteValue("breakUrl", "bu");
     }
-    if(argv["longbreakUrl"] || argv["lu"]) {
+    if(this.option["longbreakUrl"] || this.option["lu"]) {
       this.#overwriteValue("longbreakUrl", "lu");
     }
-    if(argv["longbreakApp"] || argv["la"]) {
+    if(this.option["longbreakApp"] || this.option["la"]) {
       this.#overwriteValue("longbreakApp", "la");
     }
-    if(argv["browser"] || argv["br"]) {
+    if(this.option["browser"] || this.option["br"]) {
       this.#overwriteValue("browser", "br");
     }
-    if(argv["default"] || argv["d"]) {
+    if(this.option["default"] || this.option["d"]) {
       fs.writeFileSync(SETTINGS_SAVE_PATH, JSON.stringify(DEFAULT_SETTINGS), "utf8");
     }
 
     ALL_OPTIONS.forEach(removeProperty => {
-      delete argv[removeProperty];
+      delete this.option[removeProperty];
     });
 
-    if(Object.keys(argv).length) {
+    if(Object.keys(this.option).length) {
       console.log("no such option");
     }
   }
@@ -87,7 +86,7 @@ class Setting {
 
   #overwriteValue = async (option, abbreviatedOption) => {
     let settingsJson = this.settingsJson;
-    settingsJson[option] = this.argv[option] ? this.argv[option] : this.argv[abbreviatedOption];
+    settingsJson[option] = this.option[option] ? this.option[option] : this.option[abbreviatedOption];
     fs.writeFileSync(SETTINGS_SAVE_PATH, JSON.stringify(settingsJson), "utf8");
   }
 }

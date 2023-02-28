@@ -6,8 +6,9 @@ if(!subCommand) {
 }
 
 delete argv._;
+const option = argv;
 const Setting = require('./setting.js');
-const setting = new Setting(argv);
+const setting = new Setting(option);
 
 switch(subCommand) {
   case "set":
