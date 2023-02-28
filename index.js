@@ -14,7 +14,8 @@ if(fs.existsSync("settings.json")) {
     "breakApp":"",
     "breakUrl":"",
     "longbreakApp":"",
-    "longbreakUrl":""  
+    "longbreakUrl":"",
+    "browser":"Google Chrome"
   }
   fs.writeFileSync("settings.json", JSON.stringify(settingsJson), "utf8");
 }
