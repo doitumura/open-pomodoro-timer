@@ -9,9 +9,6 @@ const Setting = require('./setting.js');
 const setting = new Setting(argv);
 
 switch(subCommand) {
-  case "default":
-    setting.restoreDefaultValue();
-    break;
   case "set":
     setting.setOptionValue();
     break;

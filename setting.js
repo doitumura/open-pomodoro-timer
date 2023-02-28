@@ -25,10 +25,6 @@ class Setting {
     }
   }
 
-  restoreDefaultValue = () => {
-    fs.writeFileSync(SETTINGS_SAVE_PATH, JSON.stringify(DEFAULT_SETTINGS), "utf8");
-  }
-
   setOptionValue = () => {
     if(this.argv["focus"] || this.argv["f"]) {
       this.#overwriteValue("focus", "f");
@@ -62,6 +58,9 @@ class Setting {
     }
     if(this.argv["browser"] || this.argv["br"]) {
       this.#overwriteValue("browser", "br");
+    }
+    if(this.argv["default" || this.argv["d"]]) {
+      fs.writeFileSync(SETTINGS_SAVE_PATH, JSON.stringify(DEFAULT_SETTINGS), "utf8");
     }
   }
 
