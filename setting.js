@@ -13,6 +13,11 @@ const DEFAULT_SETTINGS = {
   "longbreakUrl":"",
   "browser":"Google Chrome"
 }
+const ALL_OPTIONS = [
+  "focus", "f", "break", "b", "longbreak", "lb", "cycle", "c", "focusApp", "fa", "focusUrl", "fu",
+  "breakApp", "ba", "breakUrl", "bu", "longbreakApp", "la", "longbreakUrl", "lu", "browser", "br",
+  "default", "d"
+];
 
 class Setting {
   constructor(argv) {
@@ -26,41 +31,53 @@ class Setting {
   }
 
   setOptionValue = () => {
-    if(this.argv["focus"] || this.argv["f"]) {
+    let argv = this.argv;
+    if(!Object.keys(argv).length) {
+      console.log("enter option");
+    }
+    if(argv["focus"] || argv["f"]) {
       this.#overwriteValue("focus", "f");
     }
-    if(this.argv["break"] || this.argv["b"]) {
+    if(argv["break"] || argv["b"]) {
       this.#overwriteValue("break", "b");
     }
-    if(this.argv["longbreak"] || this.argv["lb"]) {
+    if(argv["longbreak"] || argv["lb"]) {
       this.#overwriteValue("longbreak", "lb");
     }
-    if(this.argv["cycle"] || this.argv["c"]) {
+    if(argv["cycle"] || argv["c"]) {
       this.#overwriteValue("cycle", "c");
     }
-    if(this.argv["focusApp"] || this.argv["fa"]) {
+    if(argv["focusApp"] || argv["fa"]) {
       this.#overwriteValue("focusApp", "fa");
     }
-    if(this.argv["focusUrl"] || this.argv["fu"]) {
+    if(argv["focusUrl"] || argv["fu"]) {
       this.#overwriteValue("focusUrl", "fu");
     }
-    if(this.argv["breakApp"] || this.argv["ba"]) {
+    if(argv["breakApp"] || argv["ba"]) {
       this.#overwriteValue("breakApp", "ba");
     }
-    if(this.argv["breakUrl"] || this.argv["bu"]) {
+    if(argv["breakUrl"] || argv["bu"]) {
       this.#overwriteValue("breakUrl", "bu");
     }
-    if(this.argv["longbreakUrl"] || this.argv["lu"]) {
+    if(argv["longbreakUrl"] || argv["lu"]) {
       this.#overwriteValue("longbreakUrl", "lu");
     }
-    if(this.argv["longbreakApp"] || this.argv["la"]) {
+    if(argv["longbreakApp"] || argv["la"]) {
       this.#overwriteValue("longbreakApp", "la");
     }
-    if(this.argv["browser"] || this.argv["br"]) {
+    if(argv["browser"] || argv["br"]) {
       this.#overwriteValue("browser", "br");
     }
-    if(this.argv["default" || this.argv["d"]]) {
+    if(argv["default"] || argv["d"]) {
       fs.writeFileSync(SETTINGS_SAVE_PATH, JSON.stringify(DEFAULT_SETTINGS), "utf8");
+    }
+
+    ALL_OPTIONS.forEach(removeProperty => {
+      delete argv[removeProperty];
+    });
+
+    if(Object.keys(argv).length) {
+      console.log("no such option");
     }
   }
 

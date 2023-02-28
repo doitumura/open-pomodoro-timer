@@ -5,6 +5,7 @@ if(!subCommand) {
   return;
 }
 
+delete argv._;
 const Setting = require('./setting.js');
 const setting = new Setting(argv);
 
