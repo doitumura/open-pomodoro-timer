@@ -7,7 +7,7 @@ if(!subCommand) {
 
 delete argv._;
 const option = argv;
-const Setting = require('./setting.js');
+const Setting = require('./lib/setting.js');
 const setting = new Setting(option);
 
 switch(subCommand) {
@@ -18,7 +18,7 @@ switch(subCommand) {
     setting.print();
     break;
   case "start":
-    const PomodoroTimer = require("./pomodoro-timer.js");
+    const PomodoroTimer = require("./lib/pomodoro-timer.js");
     const pomodoroTimer = new PomodoroTimer(setting.settingsJson);
     pomodoroTimer.start();
     break;
