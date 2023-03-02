@@ -23,5 +23,5 @@ switch(subCommand) {
     pomodoroTimer.start();
     break;
   default:
-    console.error("no such subcommand")
+    console.error("invalid subcommand");
 }
