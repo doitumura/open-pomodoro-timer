@@ -1,7 +1,7 @@
 const argv = require("minimist")(process.argv.slice(2));
 const subCommand = argv["_"][0];
 if(!subCommand) {
-  console.log("enter subcommand");
+  console.error("enter subcommand");
   return;
 }
 
@@ -23,5 +23,5 @@ switch(subCommand) {
     pomodoroTimer.start();
     break;
   default:
-    console.log("no such subcommand")
+    console.error("no such subcommand")
 }
