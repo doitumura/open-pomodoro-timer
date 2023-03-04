@@ -15,6 +15,10 @@
     "type": "git",
     "url": "git+https://github.com/doitumura/pomodoro-timer.git"
   },
+  "keywords": [
+    "pomodoro",
+    "open"
+  ],
   "author": "doitumura",
   "license": "MIT",
   "bugs": {
