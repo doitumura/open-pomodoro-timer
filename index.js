@@ -4,7 +4,7 @@ delete argv._;
 const option = argv;
 
 const Setting = require("./lib/setting.js");
-const setting = new Setting(option);
+const setting = new Setting();
 const PomodoroTimer = require("./lib/pomodoro-timer.js");
 const pomodoroTimer = new PomodoroTimer(setting.settingsJson);
 
@@ -12,8 +12,11 @@ switch (subCommand) {
   case undefined:
     console.error("enter subcommand");
     break;
+  case "default":
+    setting.restoreDefault();
+    break;
   case "set":
-    setting.setOptionValue();
+    setting.setOptionValue(option);
     break;
   case "settings":
     setting.print();
