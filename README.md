@@ -29,7 +29,7 @@ set [options]  Change the setting with the value specified in the option
 -f, --focus [n]           Focus timer minutes (default: 25)
 -b, --break [n]           Break timer minutes (default: 5)
 --lb, --longbreak [n]     Long break timer minutes (default: 15)
--c, --cycle [n]           how many times to focus until long break(default: 4)
+-c, --cycle [n]           How many times to focus until long break(default: 4)
 --fa, --focusApp [s]      App to open when focus timer starts(default: "")
 --fu, --focusUrl [s]      Url to open when focus timer starts(default: "")
 --ba, --breakApp [s]      App to open when break timer starts(default: "")
@@ -38,6 +38,8 @@ set [options]  Change the setting with the value specified in the option
 --lu, --longbreakUrl [s]  Url to open when long break timer starts(default: "")
 
 * include the official name of the app in the app string
+* If cycle is 1, focus and long break are alternately repeated
+* If cycle is 0, focus and break are repeated alternately
 ```
 
 ### Example
@@ -72,4 +74,6 @@ $ open-pomodoro settings
   longbreakUrl: ''
 }
 $ open-pomodoro start
+
+* The timer doesn't stop automatically, so press ctrl+c to stop it.
 ```
