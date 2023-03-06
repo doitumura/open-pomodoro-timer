@@ -11,7 +11,7 @@ npm install -g open-pomodoro-timer
 ### Usage
 
 ```
-open-pomodoro [subcommand] [options]
+open-pomodoro-timer [subcommand] [options]
 ```
 
 ### Subcommand
@@ -45,7 +45,7 @@ set [options]  Change the setting with the value specified in the option
 ### Example
 
 ```
-$ open-pomodoro settings
+$ open-pomodoro-timer settings
 {
   focus: 25,
   break: 5,
@@ -58,9 +58,9 @@ $ open-pomodoro settings
   longbreakApp: '',
   longbreakUrl: ''
 }
-$ open-pomodoro set -f 10 -b 10
-$ open-pomodoro set --fa "Visual Studio Code"
-$ open-pomodoro settings
+$ open-pomodoro-timer set -f 10 -b 10
+$ open-pomodoro-timer set --fa "Visual Studio Code"
+$ open-pomodoro-timer settings
 {
   focus: 10,
   break: 10,
@@ -73,7 +73,7 @@ $ open-pomodoro settings
   longbreakApp: '',
   longbreakUrl: ''
 }
-$ open-pomodoro start
+$ open-pomodoro-timer start
 
 * The timer doesn't stop automatically, so press ctrl+c to stop it.
 ```
