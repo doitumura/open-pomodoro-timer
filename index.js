@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 
 const argv = require("minimist")(process.argv.slice(2));
+const Setting = require("./lib/setting.js");
+const PomodoroTimer = require("./lib/pomodoro-timer.js");
+
 const subCommand = argv["_"][0];
 delete argv._;
 const option = argv;
 
-const Setting = require("./lib/setting.js");
 const setting = new Setting();
-const PomodoroTimer = require("./lib/pomodoro-timer.js");
 const pomodoroTimer = new PomodoroTimer(setting.settingsJson);
 
 switch (subCommand) {
