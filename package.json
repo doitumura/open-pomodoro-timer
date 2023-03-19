@@ -4,7 +4,7 @@
   "description": "Pomodoro timer that opens an app or website when the timer starts",
   "main": "index.js",
   "bin": {
-    "open-pomodoro": "./index.js"
+    "opomo": "./index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
