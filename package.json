@@ -1,6 +1,6 @@
 {
   "name": "open-pomodoro-timer",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Pomodoro timer that opens an app or website when the timer starts",
   "main": "index.js",
   "bin": {
